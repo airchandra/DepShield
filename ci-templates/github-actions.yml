@@ -1,0 +1,102 @@
+name: DepShield Security Scan
+
+on:
+  push:
+    branches:
+      - main
+      - develop
+  pull_request:
+  schedule:
+    # Run daily at 2 AM UTC
+    - cron: '0 2 * * *'
+
+jobs:
+  scan:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        repo: ${{ fromJson(vars.REPOS) || fromJson('["./"]') }}
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.12'
+
+      - name: Install system dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y openjdk-17-jdk maven golang-1.21 rustc cargo
+          curl -sSfL https://raw.githubusercontent.com/anchore/syft/main/install.sh | sh -s -- -b /usr/local/bin
+          curl -sSfL https://raw.githubusercontent.com/anchore/grype/main/install.sh | sh -s -- -b /usr/local/bin
+          pip install pip-audit
+
+      - name: Install DepShield
+        run: |
+          pip install -e .
+
+      - name: Run DepShield Scan
+        run: |
+          depshield \
+            --repos ${{ matrix.repo }} \
+            --output ./depshield-output \
+            --dry-run \
+            --verbose
+
+      - name: Upload SBOM
+        if: always()
+        uses: actions/upload-artifact@v3
+        with:
+          name: sbom-${{ matrix.repo }}
+          path: depshield-output/sbom/
+
+      - name: Upload Reports
+        if: always()
+        uses: actions/upload-artifact@v3
+        with:
+          name: reports-${{ matrix.repo }}
+          path: |
+            depshield-output/SYSTEM_ARCHITECTURE.md
+            depshield-output/DEPENDENCY_MATRIX.md
+            depshield-output/UPGRADE_MATRIX.md
+
+  remediate:
+    needs: scan
+    runs-on: ubuntu-latest
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.12'
+
+      - name: Install DepShield
+        run: |
+          pip install -e .
+
+      - name: Run DepShield Remediation
+        run: |
+          depshield \
+            --repos ./ \
+            --output ./depshield-output \
+            --no-dry-run \
+            --apply \
+            --verbose
+
+      - name: Create Pull Request
+        if: always()
+        uses: peter-evans/create-pull-request@v5
+        with:
+          commit-message: 'ci: automated security remediation'
+          title: 'Security: Zero-critical vulnerabilities remediation'
+          body: 'This PR contains automated dependency upgrades to fix critical vulnerabilities.'
+          branch: depshield/security-updates

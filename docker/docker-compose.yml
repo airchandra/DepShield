@@ -1,0 +1,26 @@
+version: '3.9'
+
+services:
+  depshield:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile
+    container_name: depshield
+    volumes:
+      # Mount repositories to scan
+      - ${REPOS_PATH:-./repos}:/repos:ro
+      # Mount output directory
+      - ${OUTPUT_PATH:-./depshield-output}:/output
+    environment:
+      - SWIFTHARNESS_REPOS=/repos
+      - SWIFTHARNESS_OUTPUT_DIR=/output
+      - SWIFTHARNESS_DRY_RUN=${DRY_RUN:-true}
+      - SWIFTHARNESS_APPLY=${APPLY:-false}
+      - SWIFTHARNESS_VERBOSE=${VERBOSE:-false}
+    command: >
+      depshield
+      --repos /repos
+      --output /output
+      ${DRY_RUN_FLAG:- --dry-run}
+      ${APPLY_FLAG}
+      ${VERBOSE_FLAG}

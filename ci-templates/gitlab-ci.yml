@@ -1,0 +1,70 @@
+stages:
+  - scan
+  - remediate
+  - report
+
+variables:
+  PYTHON_VERSION: "3.12"
+  OUTPUT_DIR: "./depshield-output"
+
+before_script:
+  - apt-get update -qq
+  - apt-get install -y openjdk-17-jdk maven golang rustc cargo
+  - curl -sSfL https://raw.githubusercontent.com/anchore/syft/main/install.sh | sh -s -- -b /usr/local/bin
+  - curl -sSfL https://raw.githubusercontent.com/anchore/grype/main/install.sh | sh -s -- -b /usr/local/bin
+  - pip install pip-audit
+  - pip install -e .
+
+depshield:scan:
+  stage: scan
+  image: python:3.12
+  script:
+    - depshield
+        --repos ./
+        --output $OUTPUT_DIR
+        --dry-run
+        --verbose
+  artifacts:
+    paths:
+      - $OUTPUT_DIR/
+      - docs/
+    reports:
+      dotenv: depshield.env
+    expire_in: 30 days
+  only:
+    - merge_requests
+    - main
+    - develop
+
+depshield:remediate:
+  stage: remediate
+  image: python:3.12
+  script:
+    - depshield
+        --repos ./
+        --output $OUTPUT_DIR
+        --no-dry-run
+        --apply
+        --verbose
+  artifacts:
+    paths:
+      - $OUTPUT_DIR/
+      - docs/
+  only:
+    - main
+  when: manual
+
+depshield:report:
+  stage: report
+  image: python:3.12
+  script:
+    - echo "Vulnerability Reports Generated"
+    - ls -la $OUTPUT_DIR/
+  artifacts:
+    paths:
+      - $OUTPUT_DIR/
+  allow_failure: true
+  only:
+    - merge_requests
+    - main
+    - develop
