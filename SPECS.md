@@ -109,6 +109,55 @@ Complete documentation of DepShield project intent, specifications, plans, philo
 
 ---
 
+### 6. **docs/DIAGRAMS.md** — Architecture & System Diagrams
+**Purpose**: Professional visual representations of system design
+
+**Contains**:
+- C4 Context diagram (system boundary & external actors)
+- C4 Container diagram (major components & communication)
+- C4 Component diagram (module structure & relationships)
+- Data flow diagram (6-phase pipeline execution)
+- Dependency graph (ecosystem integration)
+- Scanner integration diagram (multi-source vulnerability detection)
+- Remediation process flow (safety gates & rollback)
+- Web dashboard architecture (frontend-backend communication)
+- Deployment architecture (CLI, Docker, CI/CD)
+- Data model relationships (entity relationships)
+- Request-response flow (complete user action sequence)
+
+**Start here if**: You want to *visualize* how DepShield works
+
+**Key Takeaway**: *"11 professional draw.io-quality diagrams showing system architecture at multiple levels of abstraction."*
+
+---
+
+### 7. **docs/SCREENSHOTS.md** — CLI & Dashboard Mockups
+**Purpose**: Visual walkthrough of user interfaces
+
+**Contains**:
+- CLI help output and command examples
+- Dry-run scan output with progress indicators
+- Remediation application with safety gates
+- Web dashboard layout overview
+- Run details page with summary cards
+- Vulnerabilities tab with filterable table
+- Matrices tab (dependency and upgrade tables)
+- Reports tab with markdown documentation viewer
+- Architecture diagram rendering in reports
+- Sequence diagrams for remediation flow
+- Dark mode variant styling
+- Mobile responsive layout
+- Real-time log streaming features
+- Auto-refresh functionality
+- Export format options
+- Accessibility features checklist
+
+**Start here if**: You want to see how DepShield *looks* in action
+
+**Key Takeaway**: *"Professional, responsive UI with real-time monitoring, detailed filtering, and accessible design."*
+
+---
+
 ## 🎯 Quick Navigation
 
 ### By Role
@@ -144,6 +193,12 @@ Complete documentation of DepShield project intent, specifications, plans, philo
 **"What are the specifications?"**
 → Read: `spec.md` (Complete technical details)
 
+**"How is the system architected?"**
+→ Read: `docs/DIAGRAMS.md` (11 professional diagrams)
+
+**"What do the CLI and dashboard look like?"**
+→ Read: `docs/SCREENSHOTS.md` (UI mockups & examples)
+
 ---
 
 ## 📚 Relationship Between Documents
@@ -154,11 +209,11 @@ intent.md (Why?)
     Justifies the goals & objectives
     ↓
 spec.md (What & How?)
-    ↓
+    ↓ ↘
     Defines what needs to be built
-    ↓
+    ↓    docs/DIAGRAMS.md (Visual architecture)
 plan.md (When & Who?)
-    ↓
+    ↓    docs/SCREENSHOTS.md (Visual UI)
     Outlines timeline & resources
     ↓
 soul.md (How to decide?)
@@ -179,6 +234,8 @@ claude.md (How to execute?)
 - [x] **plan.md** — Roadmap, milestones, resources, projections (complete)
 - [x] **soul.md** — Philosophy, principles, values, design decisions (complete)
 - [x] **claude.md** — Development guide, conventions, patterns (complete)
+- [x] **docs/DIAGRAMS.md** — 11 professional architecture diagrams (complete)
+- [x] **docs/SCREENSHOTS.md** — CLI output and dashboard mockups (complete)
 
 ---
 
@@ -191,7 +248,9 @@ claude.md (How to execute?)
 | plan.md | Roadmap | ~500 lines | 8 sections |
 | soul.md | Philosophy | ~400 lines | 10 sections |
 | claude.md | Dev Guide | ~450 lines | 15 sections |
-| **Total** | Complete Documentation | **~2300 lines** | **48 sections** |
+| docs/DIAGRAMS.md | Architecture Diagrams | ~800 lines | 11 diagrams |
+| docs/SCREENSHOTS.md | UI Mockups & Examples | ~600 lines | 10 sections |
+| **Total** | Complete Documentation | **~3700 lines** | **69 sections + 11 diagrams** |
 
 ---
 
@@ -299,7 +358,7 @@ These specifications are successful if:
 ---
 
 **Last Updated**: November 1, 2024
-**Total Documentation**: 5 files, ~2300 lines, 48 sections
-**Status**: Complete ✅
+**Total Documentation**: 7 files, ~3700 lines, 69 sections + 11 professional diagrams
+**Status**: Complete with Professional Visuals ✅
 
-*These specifications define DepShield completely—its purpose, design, evolution, and execution.*
+*These specifications define DepShield completely—its purpose, design, evolution, execution, and architecture with professional diagrams and UI mockups.*

@@ -122,7 +122,6 @@ dmypy.json
 depshield-output/
 *.sbom.json
 *.vuln.json
-docs/
 
 # IDE
 .vscode/

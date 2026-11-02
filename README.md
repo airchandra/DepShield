@@ -85,6 +85,17 @@ Comprehensive documentation of the entire project:
 ### Other Documentation
 
 - **[docs/ARCHITECTURE.md](./docs/ARCHITECTURE.md)** — System design and architecture
+- **[docs/DIAGRAMS.md](./docs/DIAGRAMS.md)** — 11 professional draw.io-quality diagrams
+  - C4 Context, Container, and Component diagrams
+  - Data flow, pipeline execution, and dependency graphs
+  - Scanner integration and remediation flows
+  - Web dashboard architecture
+  - Request-response sequences
+- **[docs/SCREENSHOTS.md](./docs/SCREENSHOTS.md)** — CLI output and web dashboard mockups
+  - CLI usage examples
+  - Dashboard interface layouts
+  - Real-time monitoring features
+  - Report viewing and export options
 - **[docs/GETTING_STARTED.md](./docs/GETTING_STARTED.md)** — Step-by-step tutorial
 - **[QUICKSTART.md](./QUICKSTART.md)** — 5-minute quick start
 - **[COMPLETE.md](./COMPLETE.md)** — Project completion summary
