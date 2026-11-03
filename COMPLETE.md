@@ -55,7 +55,7 @@ A modern, interactive web interface to trigger scans, monitor progress, and expl
 ## Project Structure
 
 ```
-/Users/sirivennela/source/depshield/
+
 ├── depshield/                    # Core vulnerability pipeline (COMPLETE)
 │   ├── cli.py                  # Click CLI entry point
 │   ├── config.py               # Pydantic configuration
@@ -108,7 +108,7 @@ A modern, interactive web interface to trigger scans, monitor progress, and expl
 ### Option 1: CLI Only (No UI)
 
 ```bash
-cd /Users/sirivennela/source/depshield
+cd 
 
 # Install
 pip install -e .
@@ -124,7 +124,7 @@ ls -la /path/to/app/docs/
 ### Option 2: Full Dashboard (CLI + UI)
 
 ```bash
-cd /Users/sirivennela/source/depshield
+cd 
 
 # Terminal 1: Backend
 cd ui/backend
@@ -282,7 +282,7 @@ cp ci-templates/gitlab-ci.yml .gitlab-ci.yml
 
 **Without Installation** (verify structure):
 ```bash
-cd /Users/sirivennela/source/depshield
+cd 
 find . -name "*.py" | wc -l  # ~65 Python files total
 find . -name "*.tsx" | wc -l # ~8 React components
 ```
@@ -307,7 +307,7 @@ npm run build  # Creates dist/ directory
 
 ### "depshield command not found"
 ```bash
-cd /Users/sirivennela/source/depshield
+cd 
 pip install -e .  # Installs CLI in editable mode
 ```
 
@@ -367,7 +367,7 @@ You have a **complete, production-ready system** for:
 
 ## Next Steps
 
-1. **Read** `/Users/sirivennela/source/depshield/README.md` for full overview
+1. **Read** `README.md` for full overview
 2. **Try the CLI** with `depshield --help`
 3. **Run the Dashboard** with `cd ui && make dev`
 4. **Deploy to Docker** with `docker build -t depshield .`

@@ -11,7 +11,7 @@ Get up and running in 5 minutes.
 ## Option 1: CLI Only (2 minutes)
 
 ```bash
-cd /Users/sirivennela/source/depshield
+cd 
 
 # Install
 pip install -e .
@@ -36,7 +36,7 @@ ls -la /path/to/your/repo/docs/
 ### Backend
 
 ```bash
-cd /Users/sirivennela/source/depshield/ui/backend
+cd ui/backend
 
 # Install dependencies
 pip install -r requirements.txt
@@ -48,7 +48,7 @@ uvicorn main:app --reload
 ### Frontend (new terminal)
 
 ```bash
-cd /Users/sirivennela/source/depshield/ui/frontend
+cd ui/frontend
 
 # Install dependencies
 npm install
@@ -76,7 +76,7 @@ Watch the live logs and explore results!
 ### Build
 
 ```bash
-cd /Users/sirivennela/source/depshield
+cd 
 
 docker build -t depshield:latest -f docker/Dockerfile .
 ```
@@ -191,12 +191,12 @@ docker run -v /repos2:/repos depshield:latest ...
 
 **"depshield: command not found"**
 ```bash
-pip install -e /Users/sirivennela/source/depshield
+pip install -e 
 ```
 
 **"ModuleNotFoundError: No module named 'harness'"**
 ```bash
-cd /Users/sirivennela/source/depshield
+cd 
 pip install -e .
 ```
 
@@ -218,7 +218,7 @@ npm run dev
 
 ## Next Steps
 
-1. **Read** the main README: `/Users/sirivennela/source/depshield/README.md`
+1. **Read** the main README: `README.md`
 2. **Try it** with your own repo
 3. **Deploy** via Docker or CI/CD
 4. **Share** results with your team

@@ -33,7 +33,7 @@ A fully-functional web dashboard for the DepShield vulnerability remediation pip
 ## Project Structure
 
 ```
-/Users/sirivennela/source/depshield/
+
 ├── depshield/                        # Core pipeline (COMPLETE)
 │   ├── cli.py, config.py, models.py, pipeline.py
 │   ├── discovery.py, scanners/, remediation/, matrix/, reporters/
