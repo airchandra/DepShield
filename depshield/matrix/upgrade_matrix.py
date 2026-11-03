@@ -39,15 +39,23 @@ class UpgradeMatrix:
         Returns:
             Dictionary mapping package to UpgradeRecommendation
         """
+        # Severity ordering (lower number = higher severity)
+        severity_order = {"critical": 0, "high": 1, "medium": 2, "low": 3, "unknown": 4}
+
         vulns_by_package = defaultdict(list)
 
         for vuln in self.vulnerabilities:
             vulns_by_package[vuln.package].append(vuln)
 
         for package, vulns in vulns_by_package.items():
-            # Get the highest severity
-            severities = [v.severity.value for v in vulns]
-            max_severity = max(severities) if severities else "unknown"
+            # Get the highest severity (lowest order value)
+            if vulns:
+                max_severity = min(
+                    vulns,
+                    key=lambda v: severity_order.get(v.severity.value, 999)
+                ).severity.value
+            else:
+                max_severity = "unknown"
 
             # Calculate max CVSS
             max_cvss = max([v.cvss_score for v in vulns] or [0.0])

@@ -1,6 +1,7 @@
 """Base remediation abstraction."""
 
 import logging
+import shlex
 import subprocess
 from abc import ABC, abstractmethod
 from pathlib import Path
@@ -97,13 +98,13 @@ class BaseRemediator(ABC):
         test_ok = True
 
         if self.repo.build_command:
-            _, stderr, rc = self._run_command(self.repo.build_command.split())
+            _, stderr, rc = self._run_command(shlex.split(self.repo.build_command))
             build_ok = rc == 0
             if not build_ok:
                 logger.warning(f"Build failed: {stderr}")
 
         if self.repo.test_command:
-            _, stderr, rc = self._run_command(self.repo.test_command.split())
+            _, stderr, rc = self._run_command(shlex.split(self.repo.test_command))
             test_ok = rc == 0
             if not test_ok:
                 logger.warning(f"Tests failed: {stderr}")

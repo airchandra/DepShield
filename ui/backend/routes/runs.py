@@ -137,8 +137,8 @@ async def run_pipeline_async(run_id: str):
         handler = ListHandler()
         handler.setFormatter(logging.Formatter("%(asctime)s - %(levelname)s - %(message)s"))
 
-        # Add handler to harness loggers
-        for logger_name in ["harness.pipeline", "harness.discovery", "harness.scanners", "harness.remediation"]:
+        # Add handler to depshield loggers
+        for logger_name in ["depshield", "depshield.pipeline", "depshield.discovery", "depshield.scanners", "depshield.remediation", "depshield.matrix"]:
             logging.getLogger(logger_name).addHandler(handler)
 
         # Run pipeline

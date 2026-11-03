@@ -15,7 +15,7 @@ export default function App() {
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
             <div className="flex items-center justify-between">
               <h1 className="text-2xl font-bold text-gray-900">
-                🔒 SwiftHarness
+                🔒 DepShield
               </h1>
               <p className="text-sm text-gray-600">Vulnerability Remediation Dashboard</p>
             </div>
@@ -36,7 +36,7 @@ export default function App() {
         {/* Footer */}
         <footer className="bg-gray-100 border-t border-gray-200 mt-16">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 text-center text-sm text-gray-600">
-            <p>SwiftHarness © 2024 • <a href="https://github.com/yourusername/swiftharness" className="text-blue-600 hover:underline">GitHub</a></p>
+            <p>DepShield © 2024 • <a href="https://github.com/airchandra/DepShield" className="text-blue-600 hover:underline">GitHub</a></p>
           </div>
         </footer>
       </div>

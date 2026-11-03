@@ -71,11 +71,18 @@ class GrypScanner(BaseScanner):
             severity_str = vuln_data.get("severity", "unknown").lower()
             severity = Severity(severity_str) if severity_str in Severity.__members__ else Severity.UNKNOWN
 
+            # Safely parse CVSS score
+            cvss_value = vuln_data.get("cvss", 0.0)
+            try:
+                cvss_score = float(cvss_value) if cvss_value else 0.0
+            except (ValueError, TypeError):
+                cvss_score = 0.0
+
             vuln = Vulnerability(
                 id=vuln_data.get("id", ""),
                 package=artifact.get("name", ""),
                 severity=severity,
-                cvss_score=float(vuln_data.get("cvss", 0.0) if vuln_data.get("cvss") else 0.0),
+                cvss_score=cvss_score,
                 description=vuln_data.get("description", ""),
                 fixed_version=vuln_data.get("fix", {}).get("versions", [""])[0] if vuln_data.get("fix") else "",
                 current_version=artifact.get("version", ""),

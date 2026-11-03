@@ -1,8 +1,6 @@
 """Main pipeline orchestrator."""
 
-import asyncio
 import logging
-from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path
 from typing import List
 

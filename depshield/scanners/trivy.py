@@ -61,11 +61,23 @@ class TrivyScanner(BaseScanner):
                 severity_str = vuln_data.get("Severity", "unknown").lower()
                 severity = Severity(severity_str) if severity_str in Severity.__members__ else Severity.UNKNOWN
 
+                # Safely parse CVSS score with nested structure
+                cvss_score = 0.0
+                cvss_data = vuln_data.get("CVSS", {})
+                if isinstance(cvss_data, dict):
+                    ghsa_data = cvss_data.get("ghsa", {})
+                    if isinstance(ghsa_data, dict):
+                        try:
+                            v3_score = ghsa_data.get("V3Score", 0.0)
+                            cvss_score = float(v3_score) if v3_score else 0.0
+                        except (ValueError, TypeError):
+                            cvss_score = 0.0
+
                 vuln = Vulnerability(
                     id=vuln_data.get("VulnerabilityID", ""),
                     package=vuln_data.get("PkgName", ""),
                     severity=severity,
-                    cvss_score=float(vuln_data.get("CVSS", {}).get("ghsa", {}).get("V3Score", 0.0)),
+                    cvss_score=cvss_score,
                     description=vuln_data.get("Title", ""),
                     fixed_version=vuln_data.get("FixedVersion", ""),
                     current_version=vuln_data.get("InstalledVersion", ""),
