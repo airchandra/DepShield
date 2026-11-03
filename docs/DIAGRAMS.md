@@ -1,6 +1,12 @@
 # DepShield Architecture Diagrams
 
-Professional draw.io-quality diagrams for DepShield system architecture, dependencies, and implementation.
+**⭐ Draw.io Specifications Available!**
+
+Professional specifications for creating diagrams in Draw.io: **[ARCHITECTURE_DIAGRAMS.md](./ARCHITECTURE_DIAGRAMS.md)**
+
+Includes detailed specs for 7 diagrams with dimensions, colors, components, and layout guides.
+
+Below are Mermaid-based versions of the key diagrams. For professional draw.io versions, see the specification document.
 
 ---
 

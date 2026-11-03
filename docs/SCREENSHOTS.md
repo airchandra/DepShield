@@ -1,6 +1,10 @@
 # DepShield — Screenshots & UI Mockups
 
-Visual guide to the DepShield CLI output and web dashboard interface.
+**⭐ NEW: Interactive HTML mockups now available!**
+
+View professional UI mockups: **[docs/UI_MOCKUPS.html](./UI_MOCKUPS.html)** (Open in web browser)
+
+This page also includes CLI output examples and descriptions of UI features.
 
 ---
 
